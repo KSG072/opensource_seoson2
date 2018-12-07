@@ -1,0 +1,180 @@
+<head>
+  <title>diary-css</title>
+</head>
+
+<body>
+  {{> header}}
+  {{> diary}}
+  {{> admin}}
+</body>
+
+<template name="header">
+  <div id="simple-header">
+    <a href=""><img src="http://d.hatena.ne.jp/images/hatena-simple_de.gif" id="logo-hatena" width="65" height="17" /></a><a href=""><img src="https://www.google.co.kr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj-xo_104zfAhWLxLwKHR9GCr8QjRx6BAgBEAU&url=https%3A%2F%2Fimgur.com%2Fgallery%2FSyYQm&psig=AOvVaw3dZnCNkgz5dZxNQ4uoyW46&ust=1544235560792065" id="logo-diary" width="43" height="17" /></a>
+    <form method="get" action="" class="search-form">
+      <input type="text" class="search-word" name="word" />
+      <input type="submit" class="search-button" name="diary" value="일기" />
+      <input type="submit" class="search-button" name="submit" value="제출" />
+      <ul class="menu">
+        <li><a href="">blog top</a></li>
+        <li><a href="">일기 목록</a></li>
+        <li><a href="">일기 쓰기く</a></li>
+        <li><a href="">관리</a></li>
+        <li><a href="">로그아웃</a></li>
+        <li><a href="">도움말</a></li>
+      </ul>
+    </form>
+  </div>
+</template>
+
+<template name="admin">
+  <div id="admin">
+    <textarea id="text"></textarea>
+    <button>일기 더 쓰기</button>
+  </div>
+</template>
+
+<template name="diary">
+  {{#with diary}}
+  <h1><a href="">{{title}}</a></h1>
+  <div class="hatena-body">
+    <!-- <p class="description">{{description}}</p> -->
+    <div class="main">
+      <div class="calendar" id="pager-top">
+        <a rel="prev" href="/naoya/?of=5" class="prev">&lt; 5일 전 일기</a>&nbsp;<span id="edit-in-place-add"></span>
+      </div><!-- .calendar -->
+
+      <div id="days">
+        {{> entries}}
+      </div><!-- #days -->
+
+      <div class="calendar" id="pager-bottom">
+        <a rel="prev" href="/naoya/?of=5" class="prev">&lt;5일 전 일기</a>&nbsp;<span id="edit-in-place-add"></span>
+      </div><!-- .calendar -->
+
+    </div><!-- .main -->
+
+    </div><!-- hatena-body -->
+    {{> footer}}
+    <div><!-- hack -->
+  </div><!-- hatena-body -->
+  {{/with}}
+</template>
+
+<template name="entries">
+
+  <div class="day">
+    <h2><a href="/naoya/20111111"><span class="date">November 11, 2011</span></a> <a href="" class="edit">편집</a></h2>
+    <div class="body">
+      {{#each entries}}
+        {{{hatenafy text}}}
+      {{/each}}
+    </div><!-- body -->
+
+    {{> comments}}
+    {{> trackbacks}}
+    {{> referers}}
+  </div><! -- day -->
+
+</template>
+
+<template name="comments">
+  <form>
+    <div class="comment">
+      <div class="caption">
+        <a name="c">댓글 쓰기く</a>
+      </div>
+
+      <div class="commentshort">
+        <p class="commentdelete">
+          <input type="submit" name="deletecomment" value="댓글 삭제" />
+          <label for="inform_spams">
+            <input type="checkbox" id="inform_spams" /> 댓글 신고하기
+          </label>
+        </p>
+
+        {{#each comments}}
+        <p>
+          <input type="checkbox">
+          <span class="commentator"><a href="" class="hatena-id-icon">{{{proficon user}}}{{user}}</a></span>
+          <span class="timestamp"><a href="">2012/03/31 09:54</a></span>
+          <span class="commentbody">{{text}}</span>
+        </p>
+        {{/each}}
+
+        <p class="commentmessage">투고한 댓글은 관리자가 승인할 때까지 공개 되지 않습니다.</p>
+
+        <p class="commentform">
+          <span class="commentator">
+            <span class="username">
+              {{{proficon "naoya"}}}
+              naoya
+            </span>
+          </span>
+          <br>
+          <textarea id="comment-textarea" cols="60" rows="3"></textarea><br>
+          <span class="comment-submit"><input type="submit" id="comment-form-button" value="투고"></span>
+        </p>
+      </div><!-- commentshort" -->
+    </div>
+  </form>
+</template>
+
+<template name="trackbacks">
+  <form>
+    <div class="refererlist">
+      <div class="caption">
+        <a>트랙백</a> - http://d.hatena.ne.jp/naoya/20120331/1333150786
+      </div>
+
+      <p class="commentdelete">
+        <input type="submit" value"트랙백 삭제" />
+        <label for="inform_spams_trackback"><input type="checkbox" name="inform_spams" id="inform_spams_trackback"> 트랙백 스팸신고</label>
+      </p>
+
+      <ul>
+        {{#each trackbacks}}
+        <li><input type="checkbox" name="tbid" /> <a href="">{{title}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </form>
+</template>
+
+<template name="referers">
+  <div class="refererlist">
+    <div class="caption">링크 목록</div>
+    <ul>
+      <li>4110 <a href="">http://b.hatena.ne.jp/</a></li>
+      <li>1742 <a href="">http://b.hatena.ne.jp/hotentry</a></li>
+      <li>1679 <a href="">http://t.co/V71De7Zy</a></li>
+      <li>1342 <a href="">http://www.google.co.jp/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;sqi=2&amp;ved=0CDoQFjAA&amp;url=http://d.hatena.ne.jp/naoya/&amp;ei=pkR2T4ShGOnPmAWayrnpDw&amp;usg=AFQjCNEBvAjlIE2JcJMgX6wJ-cGN8CL03w&amp;sig2=drzHjirkoZ_vm86cKCmiUQ</a></li>
+      <li>1254 <a href="">http://reader.livedoor.com/reader/</a></li>
+    </ul>
+    <div class="calendar referer-list-more">
+      <a href="">링크 없음</a>
+    </div>
+  </div>
+</template>
+
+<template name="footer">
+  <div id="footer">
+    <div class="footer-wrapper">
+      <div class="footer-section">
+        <div id="footer-column01">
+          <a href="/naoya/about"><img src="https://www.google.co.kr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj-xo_104zfAhWLxLwKHR9GCr8QjRx6BAgBEAU&url=https%3A%2F%2Fimgur.com%2Fgallery%2FSyYQm&psig=AOvVaw3dZnCNkgz5dZxNQ4uoyW46&ust=1544235560792065" alt="Naoya Ito" title="Naoya Ito" /></a>
+        </div>
+        <div id="footer-column02">
+          <h2>Naoya Ito</h2>
+          <h3><a href="http://d.hatena.ne.jp/naoya/about">id:naoya</a></h3>
+          <ul>
+            <li><a href="http://twitter.com/naoya_ito">Twitter</a> | </li>
+            <li><a href="https://github.com/naoya">github</a> | </li>
+            <li><a href="http://www.flickr.com/photos/naoya1977/">Flickr</a> |</li>
+            <li><a href="http://b.hatena.ne.jp/naoya/">하테나 북마크</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
