@@ -1,0 +1,15 @@
+﻿소프트웨어 보증서
+Team Y-04
+
+
+이 문서는 MIT License가 적용된 동심세줄의 라이선스를 보증하는 문서입니다.
+개발하는데 사용된 오픈소스의 라이선스 목록은 다음과 같습니다.
+
+1.Creative Commons Attribution - SA 3.0 License
+
+동심세줄은 해당 라이선스 이용에 법적인 문제가 없는 웹사이트임을 
+보증합니다. (사용 오픈소스 프로그램과 라이선스는 NOTICE.txt파일과
+LICENSE.txt파일, Component_License파일에서 확인 가능합니다.)
+
+2018.12.08
+SW-동심세줄
