@@ -2,7 +2,7 @@
 
 Hanyang Univ. OSS Team Project
 ----------------------------------
-[동심세줄](https://ksg072.github.io/opensource_seoson2/HTML/index.html)
+# [동심세줄](https://ksg072.github.io/opensource_seoson2/HTML/index.html)
 
 # member
 * [Kim Min Ju](https://github.com/KIMMINJU1)
